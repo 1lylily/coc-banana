@@ -78,8 +78,16 @@ class KillAura : Module("KillAura", Keyboard.KEY_R, Category.COMBAT) {
             criticals = Client.instance?.moduleManager?.modules?.get(Criticals::class) as Criticals?
 
         if(target != null) {
+            Minecraft.getMinecraft().thePlayer.rotationPitch = 12.5F
+            Minecraft.getMinecraft().thePlayer.rotationYaw =
+                PlayerUtils.getRotationYawForTarget(
+                    Minecraft.getMinecraft().thePlayer.positionVector,
+                    target!!.positionVector
+                )
+
             if(target!!.hurtTime <= htAllow.value.toInt()) {
-                criticals?.crit()
+                if(target!!.hurtTime <= 1)
+                    criticals?.crit()
 
                 Minecraft.getMinecraft().thePlayer.swingItem()
                 PlayerUtils.sendPacket(
