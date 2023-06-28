@@ -98,6 +98,17 @@ class KillAura : Module("KillAura", Keyboard.KEY_R, Category.COMBAT) {
                 )
             }
         }
+
+        if(blocking) {
+            PlayerUtils.sendPacket(
+                C07PacketPlayerDigging(
+                    C07PacketPlayerDigging.Action.RELEASE_USE_ITEM,
+                    BlockPos(0, 0, 0),
+                    EnumFacing.DOWN
+                )
+            )
+            blocking = false
+        }
     }
 
     override fun registerSettings() {
