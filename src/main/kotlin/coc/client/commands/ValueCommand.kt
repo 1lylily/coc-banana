@@ -12,6 +12,6 @@ class ValueCommand: Command("value", "setting") {
                 it.name.equals(args[0], true)
             }?.settings?.values?.find {
                 it.name.equals(args[1], true)
-            }?.setUnkown(args[2])
+            }?.setUnknown(args[2])
     }
 }

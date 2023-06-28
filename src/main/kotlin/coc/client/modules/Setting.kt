@@ -1,7 +1,7 @@
 package coc.client.modules
 
 sealed class Setting<Type>(val name: String, var value: Type) {
-    fun setUnkown(input: String) {
+    fun setUnknown(input: String) {
         try {
             value = parse(input)
         } catch (_: Exception) {}
@@ -13,5 +13,11 @@ sealed class Setting<Type>(val name: String, var value: Type) {
 class BooleanSetting(name: String, value: Boolean): Setting<Boolean>(name, value) {
     override fun parse(input: String): Boolean {
         return input.toBoolean()
+    }
+}
+
+class DoubleSetting(name: String, value: Double): Setting<Double>(name, value) {
+    override fun parse(input: String): Double {
+        return input.toDouble()
     }
 }
