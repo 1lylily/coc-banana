@@ -49,7 +49,7 @@ class KillAura : Module("KillAura", Keyboard.KEY_R, Category.COMBAT) {
 
         target = Minecraft.getMinecraft().theWorld?.playerEntities?.find {
             it.entityId != selfEntityId &&
-                    it.getDistanceToEntity(Minecraft.getMinecraft().thePlayer) <= 8
+                    it.getDistanceToEntity(Minecraft.getMinecraft().thePlayer) <= range.value
         }
 
         val heldItem: ItemStack? = Minecraft.getMinecraft().thePlayer?.heldItem

@@ -24,7 +24,7 @@ class Criticals : Module("Criticals", Keyboard.KEY_Y, Category.COMBAT) {
         )
         PlayerUtils.sendPacket(
             C04PacketPlayerPosition(
-                x, y+0.65, z, false
+                x, y+0.0025, z, false
             )
         )
     }
