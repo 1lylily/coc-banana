@@ -63,7 +63,7 @@ class ModuleManager {
             obj.add(module.name, moduleObject)
         }
 
-        var writer = FileWriter(cfgFile)
+        val writer = FileWriter(cfgFile)
         writer.write(gson.toJson(obj))
         writer.close()
     }

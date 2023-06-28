@@ -1,6 +1,7 @@
 package coc.client.modules.impl.combat
 
 import coc.client.modules.Category
+import coc.client.modules.DoubleSetting
 import coc.client.modules.Module
 import net.minecraft.client.Minecraft
 import net.minecraft.entity.player.EntityPlayer
@@ -9,6 +10,8 @@ import net.weavemc.loader.api.event.TickEvent
 import org.lwjgl.input.Keyboard
 
 class KillAura : Module("KillAura", Keyboard.KEY_R, Category.COMBAT) {
+
+    val range: DoubleSetting = DoubleSetting("Range", 4.5)
 
     var target: EntityPlayer? = null
 
@@ -30,6 +33,10 @@ class KillAura : Module("KillAura", Keyboard.KEY_R, Category.COMBAT) {
     @SubscribeEvent
     fun onTickPost(e: TickEvent.Post) {
 
+    }
+
+    override fun registerSettings() {
+        register(range)
     }
 
 }
