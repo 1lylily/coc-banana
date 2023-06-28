@@ -1,6 +1,6 @@
 package coc.client.modules
 
-import coc.client.modules.impl.movement.SprintModule
+import coc.client.modules.impl.movement.Sprint
 import coc.client.modules.impl.visual.HUD
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -22,7 +22,7 @@ class ModuleManager {
     val modules: MutableMap<KClass<out Module>, Module> = HashMap()
 
     fun registerModules() {
-        register(SprintModule())
+        register(Sprint())
         register(HUD())
     }
 
