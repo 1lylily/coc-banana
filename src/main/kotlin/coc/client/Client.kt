@@ -1,6 +1,7 @@
 package coc.client
 
-import coc.client.commands.TestCommand
+import coc.client.commands.BindCommand
+import coc.client.commands.ToggleCommand
 import coc.client.commands.ValueCommand
 import coc.client.modules.ModuleManager
 import net.weavemc.loader.api.ModInitializer
@@ -14,8 +15,9 @@ class Client : ModInitializer {
 
         moduleManager.registerModules()
 
-        CommandBus.register(TestCommand())
         CommandBus.register(ValueCommand())
+        CommandBus.register(BindCommand())
+        CommandBus.register(ToggleCommand())
     }
 
     companion object {

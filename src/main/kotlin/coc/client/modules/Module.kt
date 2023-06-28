@@ -4,7 +4,7 @@ import net.weavemc.loader.api.event.EventBus
 
 open class Module(
     val name: String,
-    val bind: Int,
+    var bind: Int,
     val category: Category
 ) {
     val settings: MutableMap<String, Setting<*>> = HashMap()
@@ -16,8 +16,8 @@ open class Module(
                 onEnable()
                 EventBus.subscribe(this)
             } else {
-                onDisable()
                 EventBus.unsubscribe(this)
+                onDisable()
             }
         }
 
