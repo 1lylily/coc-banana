@@ -34,6 +34,7 @@ class ModuleManager {
     }
 
     private fun register(module: Module) {
+        module.registerSettings()
         modules[module::class] = module
     }
 
