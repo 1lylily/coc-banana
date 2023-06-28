@@ -11,7 +11,7 @@ class ConfigCommand: Command("config", "cfg") {
 
         when (args[0]) {
             "load" -> {
-                Minecraft.getMinecraft().thePlayer.addChatMessage(ChatComponentText("not implemented"))
+                Client.instance?.moduleManager?.loadConfig(args[1])
             }
 
             "save" -> {

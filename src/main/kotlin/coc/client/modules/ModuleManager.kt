@@ -1,13 +1,16 @@
 package coc.client.modules
 
+import coc.client.Client
 import coc.client.modules.impl.movement.Sprint
 import coc.client.modules.impl.visual.HUD
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import net.weavemc.loader.api.event.EventBus
 import net.weavemc.loader.api.event.KeyboardEvent
 import net.weavemc.loader.api.event.SubscribeEvent
 import java.io.File
+import java.io.FileReader
 import java.io.FileWriter
 import java.nio.file.Paths
 import kotlin.reflect.KClass
@@ -67,4 +70,33 @@ class ModuleManager {
         writer.write(gson.toJson(obj))
         writer.close()
     }
+
+    fun loadConfig(name: String) {
+        val cfgFile: File = Paths.get("weave-base", "$name.json").toFile()
+
+        if(!cfgFile.exists()) return
+
+        val elem = JsonParser().parse(FileReader(cfgFile))
+
+        if(elem == null || elem.isJsonNull || !elem.isJsonObject) return
+
+        val obj = elem.asJsonObject
+
+        Client.instance?.moduleManager?.modules?.forEach { moduleEntry ->
+            val module = moduleEntry.value
+            val moduleObj = (obj.get(module.name) ?: return).asJsonObject
+
+            module.bind = moduleObj["bind"].asInt
+            module.enabled = moduleObj["state"].asBoolean
+
+            val settingsObj = moduleObj["settings"].asJsonObject
+
+            module.settings.forEach {
+                val settingElem = settingsObj.get(it.key)
+
+                if(settingElem != null) it.value.setUnknown(elem.asString)
+            }
+        }
+    }
+
 }
