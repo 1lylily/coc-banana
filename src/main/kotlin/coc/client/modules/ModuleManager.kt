@@ -1,6 +1,8 @@
 package coc.client.modules
 
 import coc.client.Client
+import coc.client.modules.impl.combat.Criticals
+import coc.client.modules.impl.combat.KillAura
 import coc.client.modules.impl.movement.Sprint
 import coc.client.modules.impl.visual.HUD
 import com.google.gson.Gson
@@ -27,6 +29,8 @@ class ModuleManager {
     fun registerModules() {
         register(Sprint())
         register(HUD())
+        register(Criticals())
+        register(KillAura())
     }
 
     private fun register(module: Module) {
