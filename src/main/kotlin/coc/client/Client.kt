@@ -1,6 +1,7 @@
 package coc.client
 
 import coc.client.commands.BindCommand
+import coc.client.commands.ConfigCommand
 import coc.client.commands.ToggleCommand
 import coc.client.commands.ValueCommand
 import coc.client.modules.ModuleManager
@@ -15,9 +16,10 @@ class Client : ModInitializer {
 
         moduleManager.registerModules()
 
-        CommandBus.register(ValueCommand())
-        CommandBus.register(BindCommand())
         CommandBus.register(ToggleCommand())
+        CommandBus.register(BindCommand())
+        CommandBus.register(ValueCommand())
+        CommandBus.register(ConfigCommand())
     }
 
     companion object {

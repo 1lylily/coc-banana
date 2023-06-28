@@ -18,7 +18,7 @@ class HUD: Module("HUD", Keyboard.KEY_V, Category.VISUAL) {
             ?.stream()?.filter {
                 it.enabled
             }?.forEach {
-                Minecraft.getMinecraft().fontRendererObj.drawString(it.name, 3, 3 + (index.getAndIncrement() * Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT), -1)
+                Minecraft.getMinecraft()?.fontRendererObj?.drawString(it.name, 3, 3 + (index.getAndIncrement() * Minecraft.getMinecraft()?.fontRendererObj?.FONT_HEIGHT!!), -1)
             }
     }
 }

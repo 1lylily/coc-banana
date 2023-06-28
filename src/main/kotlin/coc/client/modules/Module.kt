@@ -16,8 +16,8 @@ open class Module(
                 onEnable()
                 EventBus.subscribe(this)
             } else {
-                EventBus.unsubscribe(this)
                 onDisable()
+                EventBus.unsubscribe(this)
             }
         }
 
